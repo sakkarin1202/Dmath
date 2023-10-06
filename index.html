@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+  <title>Network</title>
+  <style type="text/css">
+    #mynetwork {
+      width: 800px;
+      height: 600px;
+      border: 1px solid lightgray;
+    }
+  </style>
+</head>
+<body>
+<div id="mynetwork"></div>
+<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+<script type="text/javascript">
+  var DIR = 'site/';
+  var nodes = new vis.DataSet([
+    {id: 0, label: 'ผม', level: 1, shape: 'circularImage', image: 'person1.jpg'},
+    {id: 1, label: 'แม่', level: 2, shape: 'circularImage', image:  'person2.jpg'},
+    {id: 2, label: 'พ่อ', level: 2, shape: 'circularImage', image:  'community.jpg'},
+    {id: 4, label: 'ยาย', level: 3, shape: 'circularImage', image:  'person3.jpg'},
+    {id: 5, label: 'ตา', level: 3, shape: 'circularImage', image: DIR + 'shop.png'},
+    {id: 6, label: 'ย่า', level: 3, shape: 'circularImage', image: DIR + 'blog.png'},
+    {id: 7, label: 'ปู่', level: 3, shape: 'circularImage', image: DIR + 'book.png'},
+  ]);
+  
+  var edges = new vis.DataSet([
+    {from: 0, to: 1}, {from: 0, to: 2}, {from: 0, to: 3},
+    {from: 1, to: 4}, {from: 1, to: 5},
+    {from: 2, to: 6}, {from: 2, to: 7},
+    {from: 3, to: 8}, {from: 3, to: 9},
+  ]);
+
+  var container = document.getElementById('mynetwork');
+  var data = {
+    nodes: nodes,
+    edges: edges
+  };
+  var options = {
+    layout: {
+      hierarchical: {
+        direction: "UD",
+        sortMethod: "directed"
+      }
+    }
+  };
+
+  var network = new vis.Network(container, data, options);
+</script>
+</body>
+</html>
